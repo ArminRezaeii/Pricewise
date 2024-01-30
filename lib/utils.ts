@@ -1,11 +1,11 @@
 import { PriceHistoryItem, Product } from "@/types";
 
 const Notification = {
-  WELCOME: 'WELCOME',
-  CHANGE_OF_STOCK: 'CHANGE_OF_STOCK',
-  LOWEST_PRICE: 'LOWEST_PRICE',
-  THRESHOLD_MET: 'THRESHOLD_MET',
-}
+  WELCOME: "WELCOME",
+  CHANGE_OF_STOCK: "CHANGE_OF_STOCK",
+  LOWEST_PRICE: "LOWEST_PRICE",
+  THRESHOLD_MET: "THRESHOLD_MET",
+};
 
 const THRESHOLD_PERCENTAGE = 40;
 
@@ -14,20 +14,20 @@ export function extractPrice(...elements: any) {
   for (const element of elements) {
     const priceText = element.text().trim();
 
-    if(priceText) {
-      const cleanPrice = priceText.replace(/[^\d.]/g, '');
+    if (priceText) {
+      const cleanPrice = priceText.replace(/[^\d.]/g, "");
 
-      let firstPrice; 
+      let firstPrice;
 
       if (cleanPrice) {
         firstPrice = cleanPrice.match(/\d+\.\d{2}/)?.[0];
-      } 
+      }
 
       return firstPrice || cleanPrice;
     }
   }
 
-  return '';
+  return "";
 }
 
 // Extracts and returns the currency symbol from an element.
@@ -44,7 +44,7 @@ export function extractDescription($: any) {
     ".a-expander-content p",
     // Add more selectors here if needed
   ];
-
+  
   for (const selector of selectors) {
     const elements = $(selector);
     if (elements.length > 0) {
@@ -116,3 +116,6 @@ export const formatNumber = (num: number = 0) => {
     maximumFractionDigits: 0,
   });
 };
+export function extractScoreIcon(element: any) {
+return element.split(" ")[0]
+}
