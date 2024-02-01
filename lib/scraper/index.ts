@@ -41,8 +41,6 @@ export async function scrapeAmazonProduct(url: string) {
       $("#priceblock_dealprice"),
       $(".a-size-base.a-color-price")
     );
-    const iconStar = $(".a-icon-star").text().trim();
-
     const outOfStock = $(".a-color-success").text().trim() == "" ? false : true;
     const images: string | void =
       $("#imgBlkFront").attr("data-a-dynamic-image") ||
@@ -51,7 +49,7 @@ export async function scrapeAmazonProduct(url: string) {
     const imagesUrl = Object.keys(JSON.parse(images));
     const currency = extractCurrency($(".a-price-symbol"));
     const discountRate = $(".savingsPercentage").text().replace(/[-%]/g, "");
-    const reviewCount = extractScoreIcon(
+    const starIcon = extractScoreIcon(
       $(".a-size-base .a-color-base").text().trim()
     );
 
@@ -66,14 +64,14 @@ export async function scrapeAmazonProduct(url: string) {
       originalPrice: Number(originalPrice) || Number(currentPrice),
       priceHistory: [],
       discountRate: Number(discountRate),
-      score:reviewCount,
+      starIcon: starIcon||"",
       description: description,
       isOutOfStock: outOfStock,
       lowestPrice: Number(currentPrice) || Number(originalPrice),
       highestPrice: Number(originalPrice) || Number(currentPrice),
       averagePrice: Number(currentPrice) || Number(originalPrice),
     };
-return data
+    return data;
   } catch (error: any) {
     throw new Error(`Failed to scrape product:${error.message}`);
   }
