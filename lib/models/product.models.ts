@@ -21,6 +21,7 @@ const productSchema = new mongoose.Schema(
     discountRate: { type: Number },
     description: { type: String },
     starIcon: { type: String },
+    productReviews: { type: String },
     users: [{ email: { type: String, required: true } }],
     default: [],
   },

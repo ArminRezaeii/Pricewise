@@ -5,7 +5,7 @@ import React from "react";
 interface Props {
   product: Product;
 }
-export default function ProductCarts({ product }: Props) {
+export default function ProductsCard({ product }: Props) {
   return (
     <Link href={`/products/${product._id}`} className="product-card">
       <div className="product-card_img-container">
