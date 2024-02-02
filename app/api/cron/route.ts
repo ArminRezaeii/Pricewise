@@ -18,7 +18,7 @@ export async function GET() {
     // ======================== 1 SCRAPE LATEST PRODUCT DETAILS & UPDATE DB
     const updatedProducts = await Promise.all(
       products.map(async (currentProduct) => {
-        const scrapedProduct:any = await scrapeAmazonProduct(currentProduct.url);
+        const scrapedProduct = await scrapeAmazonProduct(currentProduct.url);
         if (!scrapedProduct) throw new Error("No product found");
         const updatedPriceHistory = [
           ...currentProduct.priceHistory,

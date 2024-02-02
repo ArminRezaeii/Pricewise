@@ -22,7 +22,7 @@ export type PriceHistoryItem = {
     description: string;
     category: string;
     starIcon: number;
-    productReviews: number;
+    productReviews: any;
     isOutOfStock: Boolean;
     users?: User[];
   };
