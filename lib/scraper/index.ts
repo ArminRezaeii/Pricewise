@@ -6,6 +6,9 @@ import {
   extractPrice,
   extractScoreIcon,
 } from "../utils";
+export const maxDuration = 300; // This function can run for a maximum of 300 seconds
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 export async function scrapeAmazonProduct(url: string) {
   if (!url) return;
   //BrightData proxy config
