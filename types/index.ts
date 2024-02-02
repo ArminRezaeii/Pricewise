@@ -20,8 +20,7 @@ export type PriceHistoryItem = {
     averagePrice: number;
     discountRate: number;
     description: string;
-    category: string;
-    starIcon: number;
+    starIcon: any;
     productReviews: any;
     isOutOfStock: Boolean;
     users?: User[];
