@@ -150,7 +150,7 @@ export default async function pageDetails({ params: { id } }: Props) {
               />
             </div>
           </div>
-          <Modal/>
+          <Modal productId={id}/>
         </div>
       </div>
       <div className="flex flex-col gap-6">
