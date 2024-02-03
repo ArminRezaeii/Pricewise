@@ -49,7 +49,11 @@ export default async function pageDetails({ params: { id } }: Props) {
                   height={20}
                 />
                 <p className="text-base font-semibold text-[#D46F77]">
-                  {product.productReviews}
+                  {product.productReviews?.split(" ").length > 2
+                    ? product.productReviews
+                        .replace("ratings", "")
+                        .replace(product.productReviews.split(" ")[0], "")
+                    : product.productReviews}
                 </p>
               </div>
               <div className="p-2 bg-white-200 rounded-10">
@@ -104,7 +108,11 @@ export default async function pageDetails({ params: { id } }: Props) {
                     height={16}
                   />
                   <p className="text-sm text-secondary font-semibold">
-                    {product.productReviews}
+                    {product.productReviews?.split(" ").length > 2
+                      ? product.productReviews
+                          .replace("ratings", "")
+                          .replace(product.productReviews.split(" ")[0], "")
+                      : product.productReviews}
                   </p>
                 </div>
               </div>
@@ -159,7 +167,10 @@ export default async function pageDetails({ params: { id } }: Props) {
             Product Description
           </h3>
           <div className="flex flex-col gap-4">
-           <p className="line-clamp-5"> {product?.description.replace(/\/\*[\s\S]*?\*\//g, "")}</p>
+            <p className="line-clamp-5">
+              {" "}
+              {product?.description.replace(/\/\*[\s\S]*?\*\//g, "")}
+            </p>
           </div>
         </div>
         <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[280px]">

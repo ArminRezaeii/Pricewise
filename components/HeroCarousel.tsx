@@ -2,7 +2,10 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
+import { useMediaQuery } from "react-responsive";
 export default function HeroCarousel() {
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
+
   const heroImages = [
     { imageUrl: "/assets/images/hero-1.svg", alt: "smartWatch" },
     { imageUrl: "/assets/images/hero-2.svg", alt: "bag" },
@@ -19,6 +22,7 @@ export default function HeroCarousel() {
         interval={2000}
         showArrows={false}
         showStatus={false}
+        swipeable={!isMobile}
       >
         {heroImages.map((image) => (
           <Image
