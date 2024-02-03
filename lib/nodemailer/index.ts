@@ -1,5 +1,5 @@
 "use server";
-import mailgun from "mailgun-js";
+
 import { EmailContent, EmailProductInfo, NotificationType } from "@/types";
 import nodemailer from "nodemailer";
 
@@ -80,24 +80,34 @@ export async function generateEmailBody(
   return { subject, body };
 }
 
-const mg = mailgun({
-  apiKey: process.env.MAILGUN_API_KEY ?? "", // Provide a default value if undefined
-  domain: process.env.MAILGUN_DOMAIN ?? "", // Provide a default value if undefined
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,              
+  secure: true,           
+  auth: {
+    user: "arminnoob85@gmail.com",
+    pass: process.env.GMAIL_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
+
 export const sendEmail = async (
   emailContent: EmailContent,
   sendTo: string[]
 ) => {
   const mailOptions = {
     from: "arminnoob85@gmail.com",
-    to: sendTo.join(", "),
-    subject: emailContent.subject,
+    to: sendTo,
     html: emailContent.body,
+    subject: emailContent.subject,
   };
-  try {
-    const response = await mg.messages().send(mailOptions);
-    console.log("Email sent:", response);
-  } catch (error) {
-    console.error("Error sending email:", error);
-  }
+
+  transporter.sendMail(mailOptions, (error: any, info: any) => {
+    if (error) return console.log(error);
+
+    console.log("Email sent: ", info);
+  });
 };
