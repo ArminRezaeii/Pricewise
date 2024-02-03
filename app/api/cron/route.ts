@@ -9,7 +9,9 @@ import {
   getLowestPrice,
 } from "@/lib/utils";
 import { NextResponse } from "next/server";
-
+export const maxDuration = 300; // This function can run for a maximum of 300 seconds
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 export async function GET() {
   try {
     connectToDB();
@@ -52,16 +54,22 @@ export async function GET() {
             title: updatedProduct.title,
             url: updatedProduct.url,
           };
-          const emailContent = await generateEmailBody(productInfo, emailNotifType);
-          const userEmails = updatedProduct.users.map((user: any) => user.email);
+          const emailContent = await generateEmailBody(
+            productInfo,
+            emailNotifType
+          );
+          const userEmails = updatedProduct.users.map(
+            (user: any) => user.email
+          );
           await sendEmail(emailContent, userEmails);
         }
-        return updatedProduct
+        return updatedProduct;
       })
     );
     return NextResponse.json({
-        message:'ok',data:updatedProducts
-    })
+      message: "ok",
+      data: updatedProducts,
+    });
   } catch (error) {
     throw new Error(`Error is GEt:${error}`);
   }

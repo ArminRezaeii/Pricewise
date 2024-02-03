@@ -3,9 +3,10 @@ import Searchbar from "@/components/Searchbar";
 import Image from "next/image";
 import { getAllProducts } from "@/lib/actions";
 import ProductsCard from "@/components/ProductsCard";
+export const revalidate = 10;
 export default async function Home() {
   const allProduct = await getAllProducts();
-
+ 
   return (
     <>
       <section className="px-6  md:px-20 py-24">
