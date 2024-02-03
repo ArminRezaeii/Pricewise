@@ -13,7 +13,7 @@ interface Props {
 export default async function pageDetails({ params: { id } }: Props) {
   const product: Product = await getProductById(id);
   if (!product) redirect("/");
-  const similarProducts:any = await getSimilarProducts(id);
+  const similarProducts: any = await getSimilarProducts(id);
   return (
     <div className="product-container">
       <div className="flex gap-28 xl:flex-row flex-col">
@@ -150,7 +150,7 @@ export default async function pageDetails({ params: { id } }: Props) {
               />
             </div>
           </div>
-          <Modal productId={id}/>
+          <Modal productId={id} />
         </div>
       </div>
       <div className="flex flex-col gap-6">
@@ -159,7 +159,7 @@ export default async function pageDetails({ params: { id } }: Props) {
             Product Description
           </h3>
           <div className="flex flex-col gap-4">
-            {product?.description?.split("\n")}
+           <p className="line-clamp-5"> {product?.description.replace(/\/\*[\s\S]*?\*\//g, "")}</p>
           </div>
         </div>
         <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[280px]">
@@ -170,7 +170,7 @@ export default async function pageDetails({ params: { id } }: Props) {
             height={22}
           />
           <Link href="/" className="text-base text-white">
-            But Now
+            Buy Now
           </Link>
         </button>
       </div>
@@ -179,7 +179,7 @@ export default async function pageDetails({ params: { id } }: Props) {
           <p className="section-text">Similar Products</p>
 
           <div className="flex flex-wrap gap-10 mt-7 w-full">
-            {similarProducts.map((product:any) => (
+            {similarProducts.map((product: any) => (
               <ProductsCard key={product._id} product={product} />
             ))}
           </div>

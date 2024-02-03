@@ -44,7 +44,7 @@ export function extractDescription($: any) {
     ".a-expander-content p",
     // Add more selectors here if needed
   ];
-  
+
   for (const selector of selectors) {
     const elements = $(selector);
     if (elements.length > 0) {
@@ -52,7 +52,15 @@ export function extractDescription($: any) {
         .map((_: any, element: any) => $(element).text().trim())
         .get()
         .join("\n");
-      return textContent;
+
+      // Regular expression to match code blocks
+      const codeBlockRegex = /```(?:[^`]+|`(?!``))+```/g;
+
+
+      // Remove code blocks from the description
+      const descriptionWithoutCode = textContent.replace(codeBlockRegex, "");
+
+      return descriptionWithoutCode;
     }
   }
 
@@ -117,5 +125,5 @@ export const formatNumber = (num: number = 0) => {
   });
 };
 export function extractScoreIcon(element: any) {
-return element.split(" ")[0]
+  return element.split(" ")[0];
 }
