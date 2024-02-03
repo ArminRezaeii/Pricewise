@@ -84,7 +84,7 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
   host: "smtp.gmail.com",
   port: 465,
-  secure: true,
+  secure: false,
   auth: {
     user: "arminnoob85@gmail.com",
     pass: process.env.GMAIL_PASS,
@@ -104,8 +104,7 @@ export const sendEmail = async (
     html: emailContent.body,
     subject: emailContent.subject,
   };
-
-  await transporter.sendMail(mailOptions, (error: any, info: any) => {
+  transporter.sendMail(mailOptions, (error: any, info: any) => {
     if (error) return console.log(error);
 
     console.log("Email sent: ", info);
