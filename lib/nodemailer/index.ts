@@ -81,10 +81,13 @@ export async function generateEmailBody(
 }
 
 const mg = mailgun({
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN,
+  apiKey: process.env.MAILGUN_API_KEY ?? "", // Provide a default value if undefined
+  domain: process.env.MAILGUN_DOMAIN ?? "", // Provide a default value if undefined
 });
-export const sendEmail = async (emailContent:EmailContent, sendTo:string[]) => {
+export const sendEmail = async (
+  emailContent: EmailContent,
+  sendTo: string[]
+) => {
   const mailOptions = {
     from: "arminnoob85@gmail.com",
     to: sendTo.join(", "),
