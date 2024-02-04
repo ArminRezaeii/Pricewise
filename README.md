@@ -1,5 +1,5 @@
 
-Project Description: Price Tracker Web Application
+Price Tracker Web Application
 
 Welcome to my GitHub repository showcasing my latest web project - a dynamic Price Tracker built with cutting-edge technologies. This project is designed to provide users with a convenient and efficient way to track the prices of their favorite products on Amazon and receive alerts when the prices drop to their desired levels.
 
