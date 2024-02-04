@@ -1,35 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Amazon Product Tracker
+This is a web application that allows you to track the price of any Amazon product. You can enter the product link in the search bar and see the product details, such as name, image, rating, and current price. You can also enable price tracking, which will use a cron job to periodically scrape the product data and send you an email notification when the price reaches the lowest point ever. This way, you can buy the product at the best possible price.
 
-## Getting Started
+Technologies
+This project is built with the following technologies:
 
-First, run the development server:
+Next.js 14: A React framework for building fast and scalable web applications.
+TypeScript: A superset of JavaScript that adds static type checking and other features.
+Tailwind: A utility-first CSS framework for rapidly building custom designs.
+MongoDB: A document-based database for storing and querying data.
+How to run
+To run this project locally, you need to have Node.js, npm, and MongoDB installed on your machine. Then, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Clone this repository to your local machine.
+Navigate to the project folder and run npm install to install the dependencies.
+Create a .env file in the root directory and add the following variables:
+MONGODB_URI=<your MongoDB connection string>
+SENDGRID_API_KEY=<your SendGrid API key>
+EMAIL_FROM=<your email address>
+EMAIL_TO=<the email address to receive notifications>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
+Run npm run dev to start the development server.
+Open http://localhost:3000 in your browser and enjoy!
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
